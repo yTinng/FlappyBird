@@ -1,6 +1,6 @@
 # FlappyBird
->First time to finish a game by myself,feel so good,thought i still copy some codes from the author.
-I try my best to understand all the codes,and i find it was not so difficult to do it.
+>First time to finish a game by myself,feel so good,thought I still copy some codes from the author.<br>
+I try my best to understand all the codes,and I find it was not so difficult to do it.
 ## Object
 1.bird<br>
 2.sky<br>
