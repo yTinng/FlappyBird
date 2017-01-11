@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+</head>
+
+<body>
+    <canvas id="cv"></canvas>
+    <script src="js/Fly.js"></script>
+    <script src="js/sky.js"></script>
+    <script src="js/pipe.js"></script>
+    <script src="js/land.js"></script>
+    <script src="js/game.js"></script>
+    <script src="js/bird.js"></script>
+    <script>
+    var cv = document.querySelector("#cv");
+    cv.width = 800;
+    cv.height = 600;
+
+    //封装一个旋转角度的函数
+    var toRadian = function(angle) {
+        return angle / 180 * Math.PI;
+    }
+
+    var ctx = cv.getContext("2d");
+
+    new Fly.Game({
+        context: ctx
+    }).startGame();
+    </script>
+</body>
+
+</html>
