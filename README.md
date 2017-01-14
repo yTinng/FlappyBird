@@ -6,7 +6,7 @@ I try my best to understand all the codes,and I find it was not so difficult to 
 2. sky
 3. land
 4. pipe
-5. game(the one who control the public thing)<br>
+5. game(the one who control the public thing)
 6. Fly(the only one  exposed to the all scope )
 ## Object-orientend Program
 ```
