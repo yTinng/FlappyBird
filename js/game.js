@@ -4,8 +4,18 @@
         this.imgSrc = ['birds', 'land', 'sky', 'pipe1', 'pipe2'];
         this.lastFramTime = new Date() - 0;
         this.curFramTime = new Date() - 0;
+        //scoreTime
+        this.scoreLastTime = new Date() - 0;
+        this.scoreCurTime = new Date() - 0;
         this.delta = 0;
         this.isStart = true;
+        //添加分数
+        this.scoreDiv = config.score;
+        this.score = 0;
+        this.scoreDeal = 0;
+        this.scoreText = 0;
+        //btn
+        this.btn = config.btn;
     };
     Game.prototype = {
         constructor: Game,
@@ -50,6 +60,16 @@
                 that.hero.changeSpeed(-0.2);
             });
         },
+        //startBrn S
+        startBtn: function() {
+            var that = this;
+            this.btn.onclick = function() {
+                that.startGame();
+                that.btn.setAttribute("class", "hide");
+
+            };
+        },
+        //startBtn E
         startGame: function() {
             this.render();
         },
@@ -71,6 +91,7 @@
                         that.curFramTime = new Date() - 0;
                         that.delta = that.curFramTime - that.lastFramTime;
                         that.lastFramTime = that.curFramTime;
+
                         that.roles.forEach(function(role) {
                             role.render(that.delta);
                         });
@@ -81,8 +102,14 @@
                             // that.isStart = false;
                             that.gameOver();
                         }
-
+                        //scoreTime S
+                        that.scoreCurTime = new Date() - 0;
+                        that.score = that.scoreCurTime - that.scoreLastTime;
+                        that.scoreDeal = Math.floor(that.score / 1000);
+                        that.scoreDiv.innerHTML = "score: " + that.scoreDeal + " s";
+                        //scoreTime E
                         ctx.restore();
+
                         window.requestAnimationFrame(render);
                     }
                 }
