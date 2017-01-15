@@ -72,16 +72,34 @@
         //startBtn E
         startGame: function() {
             this.render();
+            this.scoreLastTime = new Date();
         },
         gameOver: function() {
             this.isStart = false;
+            this.reStar();
         },
+        //restart S
+        reStar: function() {
+            this.btn.setAttribute("class", "show");
+            this.btn.innerHTML = "<p>Restart</p><button>Go</button>";
+            that = this;
+            this.btn.onclick = function() {
+                that.render();
+                that.scoreLastTime = new Date();
+                that.isStart = true;
+                that.btn.setAttribute("class", "hide");
+            }
+        },
+        //restsr E
         render: function() {
             var that = this;
             var ctx = that.context;
             var cv = ctx.canvas;
+            console.log(11);
+            this.lastFramTime = new Date() - 0;
             Fly.loadImages(that.imgSrc, function(imgList) {
                 that.init(imgList);
+                console.log(33);
                 var b = that.hero;
                 var render = function() {
                     if (that.isStart) {
@@ -97,23 +115,27 @@
                         });
                         b.render(that.delta);
 
+                        console.log(222);
                         //检测碰撞
                         if (b.y <= 0 || (b.y >= cv.height - imgList['land'].height - 10) || ctx.isPointInPath(b.x, b.y)) {
-                            // that.isStart = false;
+                            that.isStart = false;
                             that.gameOver();
                         }
-                        //scoreTime S
+                        // scoreTime S
                         that.scoreCurTime = new Date() - 0;
                         that.score = that.scoreCurTime - that.scoreLastTime;
                         that.scoreDeal = Math.floor(that.score / 1000);
                         that.scoreDiv.innerHTML = "score: " + that.scoreDeal + " s";
-                        //scoreTime E
+                        // console.log(that.scoreDeal);
+                        // scoreTime E
                         ctx.restore();
 
                         window.requestAnimationFrame(render);
                     }
+
                 }
                 window.requestAnimationFrame(render);
+                console.log(44);
             });
         }
     };
